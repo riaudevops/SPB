@@ -1,2 +1,2 @@
-# Sistem Perpustakaan Online
- Sistem Perpustakaan Online
+# Sistem Peminjaman Buku
+ Build with Codeigniter
