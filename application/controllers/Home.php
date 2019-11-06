@@ -11,7 +11,11 @@ class Home extends CI_Controller {
         $this->load->view('templates/topbar');
 
         if($this->session->userdata('username') !== null){
-            $this->load->view('home/dashboard');
+            if ($this->session->userdata('hak_akses') == 1) {
+                $this->load->view('home/dashboard');
+            }else{
+                $this->load->view('home/user_dashboard');
+            }
         }else{
             $this->load->view('home/index');
         }
