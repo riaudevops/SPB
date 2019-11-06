@@ -76,7 +76,7 @@
   </div>
 
   <li class="nav-item <?php if($index == 1) echo"active"?>">
-    <a class="nav-link" href="home">
+    <a class="nav-link" href="<?= base_url('home') ?>">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Dashboard</span></a>
   </li>

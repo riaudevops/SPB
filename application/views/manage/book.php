@@ -2,8 +2,6 @@
 
     <!-- Page Heading -->
 
-    <!-- Button trigger modal -->
-
     <div class="row">
         <div class="col">
             <?= $this->session->flashdata('message');?>
