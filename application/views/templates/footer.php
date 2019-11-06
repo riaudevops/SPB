@@ -148,7 +148,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
-                <a id="tombolHapus" class="hapusBuku btn btn-danger" href="#">Hapus</a>
+                <button id="tombolHapus" class="hapusBuku btn btn-danger" onclick="loadUlang()">Hapus</button>
             </div>
         </div>
     </div>

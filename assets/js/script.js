@@ -1,34 +1,38 @@
-// var total;
+var total;
 
-// function getRandom() { return Math.ceil(Math.random() * 10); }
-// function createSum() {
-//     var randomNum1 = getRandom(),
-//         randomNum2 = getRandom();
-//     total = randomNum1 + randomNum2;
-//     $("#question").text(randomNum1 + " + " + randomNum2);
-//     $("#ans").val('');
-//     checkInput();
-// }
+function getRandom() { return Math.ceil(Math.random() * 10); }
+function createSum() {
+    var randomNum1 = getRandom(),
+        randomNum2 = getRandom();
+    total = randomNum1 + randomNum2;
+    $("#question").text(randomNum1 + " + " + randomNum2);
+    $("#ans").val('');
+    checkInput();
+}
 
-// function checkInput() {
-//     var input = $("#ans").val(),
-//         slideSpeed = 200,
-//         hasInput = !!input,
-//         valid = hasInput && input == total;
-//     $('#message').toggle(!hasInput);
-//     // $('#tombolHapus').prop('disabled', !valid);
-//     $('#success').toggle(valid);
-//     $('#fail').toggle(hasInput && !valid);
-// }
+function checkInput() {
+    var input = $("#ans").val(),
+        slideSpeed = 200,
+        hasInput = !!input,
+        valid = hasInput && input == total;
+    $('#message').toggle(!hasInput);
+    $('#tombolHapus').prop('disabled', !valid);
+    $('#success').toggle(valid);
+    $('#fail').toggle(hasInput && !valid);
+}
+
+function loadUlang() {
+    location.reload();
+}
 
 $(document).ready(function () {
 
-    // //create initial sum
-    // createSum();
-    // // On "reset button" click, generate new random sum
-    // $('button[type=reset]').click(createSum);
-    // // On user input, check value
-    // $("#ans").keyup(checkInput);
+    //create initial sum
+    createSum();
+    // On "reset button" click, generate new random sum
+    $('button[type=reset]').click(createSum);
+    // On user input, check value
+    $("#ans").keyup(checkInput);
 
 
     $('.tambahBuku').on('click', function () {
