@@ -132,6 +132,7 @@ class Manage extends CI_Controller {
     public function deleteBook()
     {
         $id = $this->input->post('id');
+        
         if($this->mng->deleteBook($id)){
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil menghapus data buku</div>');
             redirect('manage/book');

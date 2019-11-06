@@ -32,27 +32,28 @@
             </div>
             <div class="modal-body">
                 <form action="<?= base_url('manage/addBook'); ?>" method="POST" autcomplete="OFF">
-                <input type="hidden" name="id" id="id">
+                    <input type="hidden" name="id" id="id">
                     <div class="form-group row">
                         <label for="judul" class="col-sm-3 col-form-label">Judul</label>
                         <div class="col-sm-9">
-                            <input autocomplete="off" name="judul" type="text" class="form-control" id="judul" placeholder="Judul"
-                                required>
+                            <input autocomplete="off" name="judul" type="text" class="form-control" id="judul"
+                                placeholder="Judul" required>
                             <?= form_error('judul', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="penulis" class="col-sm-3 col-form-label">Penulis</label>
                         <div class="col-sm-9">
-                            <input autocomplete="off" name="penulis" type="text" class="form-control" id="penulis" placeholder="Penulis"
-                                autcomplete="off">
+                            <input autocomplete="off" name="penulis" type="text" class="form-control" id="penulis"
+                                placeholder="Penulis" autcomplete="off">
                             <?= form_error('penulis', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="tahun" class="col-sm-3 col-form-label">Tahun</label>
                         <div class="col-sm-9">
-                            <input autocomplete="off" name="tahun" type="number" class="form-control" id="tahun" placeholder="Tahun">
+                            <input autocomplete="off" name="tahun" type="number" class="form-control" id="tahun"
+                                placeholder="Tahun">
                             <?= form_error('tahun', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
@@ -67,8 +68,8 @@
                     <div class="form-group row">
                         <label for="kota_terbit" class="col-sm-3 col-form-label">Kota Terbit</label>
                         <div class="col-sm-9">
-                            <input autocomplete="off" name="kota_terbit" type="text" class="form-control" id="kota_terbit"
-                                placeholder="Kota Terbit">
+                            <input autocomplete="off" name="kota_terbit" type="text" class="form-control"
+                                id="kota_terbit" placeholder="Kota Terbit">
                             <?= form_error('kota_terbit', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
@@ -82,8 +83,8 @@
                     <div class="form-group row">
                         <label for="jumlah_halaman" class="col-sm-3 col-form-label">Jumlah Halaman</label>
                         <div class="col-sm-9">
-                            <input autocomplete="off" name="jumlah_halaman" type="number" class="form-control" id="jumlah_halaman"
-                                placeholder="Jumlah Halaman">
+                            <input autocomplete="off" name="jumlah_halaman" type="number" class="form-control"
+                                id="jumlah_halaman" placeholder="Jumlah Halaman">
                             <?= form_error('jumlah_halaman', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
@@ -126,10 +127,28 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Harap perhatikan bahwa buku yang dihapus tidak akan dapat dikembalikan.</div>
+            <div class="modal-body">
+                Untuk melanjutkan penghapusan silahkan jawab hasil dari penjumlahan berikut
+                <div class="row mt-3">
+                    <div class="col"></div>
+                    <div class="col">
+                        <p class="text-center" id="question">
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row form-group">
+                    <!-- <p id="question"></p> -->
+                    <label for="ans" class="col-sm-3 col-form-label">Jawaban</label>
+                    <div class="col-sm-9">
+                        <input id="ans" type="number" autocomplete="off" class="form-control"
+                            placeholder="Input Jawaban">
+                    </div>
+                </div>
+                Harap perhatikan bahwa buku yang dihapus <b>tidak dapat</b> dikembalikan.
+            </div>
             <div class="modal-footer">
                 <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
-                <a class="hapusBuku btn btn-danger" href="">Hapus</a>
+                <a id="tombolHapus" class="hapusBuku btn btn-danger" href="#">Hapus</a>
             </div>
         </div>
     </div>
