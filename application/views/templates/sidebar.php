@@ -4,7 +4,7 @@
   id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url() ?>">
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-book-reader"></i>
     </div>
@@ -107,7 +107,7 @@
   <?php else: ?>
 
   <li class="nav-item">
-    <a class="nav-link" href="auth">
+    <a class="nav-link" href="<?= base_url('auth') ?>">
       <i class="fas fa-fw fa-sign-in-alt"></i>
       <span>Login</span></a>
   </li>

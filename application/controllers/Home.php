@@ -12,13 +12,8 @@ class Home extends CI_Controller {
 
     public function index()
     {
-        $config['per_page'] = 2;  //show record per halaman
+        $config['per_page'] = 10;  
         $data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        // $data['siteUrl'] = site_url();
-        // $data['baseUrl'] = base_url();
-
-        // var_dump($data);
-        // die();
 
         $data = $this->home->getAllBook($config["per_page"], $data['page']);           
         self::showBook($data);
@@ -26,15 +21,13 @@ class Home extends CI_Controller {
 
     public function showBook($datas)
     {
-        //konfigurasi pagination
-        $config['base_url'] = base_url('home/index'); //site url
-        $config['total_rows'] = $this->db->count_all('buku'); //total row
-        $config['per_page'] = 2;  //show record per halaman
-        $config["uri_segment"] = 3;  // uri parameter
+        $config['base_url'] = base_url('home/index');
+        $config['total_rows'] = $this->db->count_all('buku');
+        $config['per_page'] = 10;  
+        $config["uri_segment"] = 3;  
         $choice = $config["total_rows"] / $config["per_page"];
         $config["num_links"] = floor($choice);
  
-        // Membuat Style pagination untuk BootStrap v4
         $config['first_link']       = 'First';
         $config['last_link']        = 'Last';
         $config['next_link']        = '&raquo;';
@@ -69,10 +62,10 @@ class Home extends CI_Controller {
             if ($this->session->userdata('hak_akses') == 1) {
                 $this->load->view('home/dashboard');
             }else{
-                $this->load->view('home/user_dashboard',$datas);
+                $this->load->view('home/user_dashboard',$data);
             }
         }else{
-            $this->load->view('home/index');
+            $this->load->view('home/index',$data);
         }
 
         $this->load->view('templates/footer');

@@ -65,7 +65,7 @@
                 <td><?= $b['letak_buku'] ?></td>
                 <td style="text-align: center;"><?= $b['jumlah'] ?></td>
                 <td style="text-align: center;">
-                  <a class="ubahBuku" href="#" data-toggle="modal" data-target="#bookModal" data-id="<?= $b['id'] ?>"><i
+                  <a class="ubahBuku" href="#" data-toggle="modal" data-target="#borrowBookModal" data-id="<?= $b['id'] ?>"><i
                       class="fas fa-stopwatch"></i></a>
                 </td>
               </tr>
