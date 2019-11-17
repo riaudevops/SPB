@@ -27,7 +27,7 @@ class Manage extends CI_Controller {
     {
         $config['per_page'] = 10;  //show record per halaman
         $data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data = $this->mng->getAllBook($config["per_page"], $data['page']);           
+        $data = $this->mng->getAllBook($config["per_page"], $data['page']);
         self::showBook($data);
     }
 
@@ -210,12 +210,158 @@ class Manage extends CI_Controller {
 
     public function user()
     {
-        $data['title'] = "Manajemen User";
+		$config['base_url'] = site_url('manage/user'); //site url
+		$config['total_rows'] = $this->db->count_all('user'); //total row
+		$config['per_page'] = 10;  //show record per halaman
+		$config["uri_segment"] = 3;  // uri parameter
+		$choice = $config["total_rows"] / $config["per_page"];
+		$config["num_links"] = floor($choice);
+
+		// Membuat Style pagination untuk BootStrap v4
+		$config['first_link']       = 'First';
+		$config['last_link']        = 'Last';
+		$config['next_link']        = '&raquo;';
+		$config['prev_link']        = '&laquo;';
+		$config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
+		$config['full_tag_close']   = '</ul></nav></div>';
+		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
+		$config['num_tag_close']    = '</span></li>';
+		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
+		$config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
+		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
+		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
+		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
+		$config['prev_tagl_close']  = '</span>Next</li>';
+		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
+		$config['first_tagl_close'] = '</span></li>';
+		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
+		$config['last_tagl_close']  = '</span></li>';
+		$this->pagination->initialize($config);
+
+		$data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$data['user'] = $this->mng->getAllUser($config["per_page"], $data['page']);
+		$data['pagination'] = $this->pagination->create_links();
+		$data['title'] = "Manajemen User";
         $data['index'] = 3;
+
         $this->load->view('templates/header',$data);
         $this->load->view('templates/sidebar',$data);
         $this->load->view('templates/topbar');
         $this->load->view('manage/user');
         $this->load->view('templates/footer');
+    }
+
+    public function addUser(){
+		$this->form_validation->set_rules('nama', 'nama', 'trim|required');
+		$this->form_validation->set_rules('username', 'username', 'trim|required');
+		$this->form_validation->set_rules('password1', 'password1', 'trim|required');
+		$this->form_validation->set_rules('password2', 'password2', 'trim|required');
+
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger role="alert">Gagal menambah data user, semua field harus diisi</div>');
+			redirect('manage/user');
+		} else {
+			$data = [
+				'name' => htmlspecialchars($this->input->post('nama')),
+				'username' => htmlspecialchars($this->input->post('username')),
+				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+				'hak_akses' => '0'
+			];
+
+			$data2 = $this->mng->getUsers();
+			$berbeda = true;
+			foreach ($data2 as $user) {
+				unset($user['id']);
+				if ($data['username'] == $user['username']) {
+					$berbeda = false;
+				}
+			}
+
+			if ($berbeda) {
+				if($this->mng->addUser($data)){
+					$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil menyimpan data user</div>');
+					redirect('manage/user');
+				}else{
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Terjadi kesalahan, gagal menyimpan data user</div>');
+					redirect('manage/user');
+				}
+			}else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal menambahkan, user dengan data yang sama sudah tersimpan</div>');
+				redirect('manage/user');
+			}
+		}
+	}
+
+	public function editUser()
+	{
+		$this->form_validation->set_rules('nama', 'nama', 'trim|required');
+		$this->form_validation->set_rules('username', 'username', 'trim|required');
+
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger role="alert">Gagal mengubah data user, semua field harus diisi</div>');
+			redirect('manage/user');
+		} else {
+			$data = [
+				'id' => htmlspecialchars($this->input->post('idUser')),
+				'name' => htmlspecialchars($this->input->post('nama')),
+				'username' => htmlspecialchars($this->input->post('username'))
+			];
+
+			if($this->mng->editUser($data)){
+				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil mengubah data user</div>');
+				redirect('manage/user');
+			}else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Terjadi kesalahan, gagal mengubah data user</div>');
+				redirect('manage/user');
+			}
+		}
+	}
+
+	public function deleteUser()
+	{
+		$id = $this->input->post('id');
+
+		if($this->mng->deleteUser($id)){
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil menghapus data user</div>');
+			redirect('manage/book');
+		}else{
+			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Terjadi kesalahan, gagal menghapus data user</div>');
+			redirect('manage/book');
+		}
+	}
+
+	public function getUserById()
+	{
+		$id = $this->input->post('id');
+		$data = $this->mng->getUserById($id);
+		echo json_encode($data);
+    }
+    
+    public function searchUser()
+    {
+        $this->form_validation->set_rules('keywordNama', 'keywordNama', 'trim|required');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger role="alert">Terjadi kesalahan mencari user</div>');
+            redirect('manage/user');
+        } else {
+            $keyword = htmlspecialchars($this->input->post('keywordNama'));
+            $datas = $this->mng->searchUser($keyword);
+
+            if($datas){
+                $data['user'] = $datas;
+                $data['title'] = "Manajemen User";
+                $data['index'] = 3;
+
+                $this->load->view('templates/header',$data);
+                $this->load->view('templates/sidebar',$data);
+                $this->load->view('templates/topbar');
+                $this->load->view('manage/user');
+                $this->load->view('templates/footer');
+            }else{
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Kesalahan mencari user</div>');
+                redirect('manage/book');
+            }
+        }
     }
 }

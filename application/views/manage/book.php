@@ -28,7 +28,7 @@
                         <option value="Penulis">Penulis</option>
                     </select>
                     <input name="keyword" id="keyword" autocomplete="off" type="text" class="w-50 form-control"
-                        placeholder="Kata Kunci">
+                        placeholder="Kata Kunci" required>
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit" id="tombolCari">Cari</button>
                     </div>
@@ -41,6 +41,7 @@
         <div class="col">
             <div class="card">
                 <div class="table-responsive">
+
                     <table class="table table-hover">
                         <thead style="background: #4e73df;" class="text-light">
                             <!-- judul	penulis	tahun	penerbit	kota_terbit	sub_judul	jumlah_halaman	letak_buku	jumlah -->
@@ -82,8 +83,6 @@
                             <?php } ?>
                         </tbody>
                     </table>
-
-
 
                 </div>
             </div>
