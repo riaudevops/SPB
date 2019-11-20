@@ -364,4 +364,23 @@ class Manage extends CI_Controller {
             }
         }
     }
+
+    public function peminjaman(){
+
+		$data['title'] = "Manajemen Peminjaman";
+		$data['index'] = 4;
+		$data['peminjaman'] = $this->mng->getAllPeminjaman();
+		$data['data_peminjaman'] = $this->mng->getAllDataPeminjaman();
+		$data['buku_dipinjam'] = $this->mng->getAllBukuDipinjam();
+		$data['user_peminjam'] = $this->mng->getAllUserPeminjam();
+
+//		var_dump($data['peminjaman']);
+//		die;
+
+		$this->load->view('templates/header',$data);
+		$this->load->view('templates/sidebar',$data);
+		$this->load->view('templates/topbar');
+		$this->load->view('manage/peminjaman',$data);
+		$this->load->view('templates/footer');
+	}
 }

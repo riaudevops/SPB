@@ -113,4 +113,39 @@ class Manage_model extends CI_Model
         $data = $this->db->get();
         return $data->result_array();
     }
+
+    public function getAllPeminjaman(){
+		$query = $this->db->get_where('data_peminjaman_pengembalian', array('status' => 0));
+		return $query->result_array();
+	}
+
+	public function getAllDataPeminjaman(){
+		$query = $this->db->get('buku_yang_dipinjam');
+		return $query->result_array();
+	}
+
+	public function getDataPeminjaman($id){
+		$query = $this->db->get_where('buku_yang_dipinjam', array('id_user' => $id));
+		return $query->result_array();
+	}
+
+	public function getBukuDipinjam($id){
+		$query = $this->db->get_where('buku', array('id' => $id));
+		return $query->result_array();
+	}
+
+	public function getUserPeminjam($id){
+		$query = $this->db->get_where('user', array('id' => $id));
+		return $query->result_array();
+	}
+
+	public function getAllBukuDipinjam(){
+		$query = $this->db->get('buku');
+		return $query->result_array();
+	}
+
+	public function getAllUserPeminjam(){
+		$query = $this->db->get_where('user', array('hak_akses' => 0));
+		return $query->result_array();
+	}
 }

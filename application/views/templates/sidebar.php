@@ -59,16 +59,29 @@
 
 			<!-- Heading -->
 			<div class="sidebar-heading">
-				Peminjaman dan Pengembalian
+				Peminjaman
 			</div>
 
 			<li class="nav-item <?php if ($index == 4) echo "active" ?>">
-				<a class="nav-link" href="<?= base_url('manage/user') ?>">
+				<a class="nav-link" href="<?= base_url('manage/peminjaman') ?>">
 					<i class="fas fa-fw fa-chart-area"></i>
-					<span>Manajemen Peminjaman dan Pengembalian</span></a>
+					<span>Manajemen Peminjaman</span></a>
 			</li>
 
 			<hr class="sidebar-divider">
+
+			<div class="sidebar-heading">
+				Pengembalian
+			</div>
+
+			<li class="nav-item <?php if ($index == 5) echo "active" ?>">
+				<a class="nav-link" href="<?= base_url('manage/user') ?>">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>Riwayat Peminjaman Pengembalian</span></a>
+			</li>
+
+			<hr class="sidebar-divider">
+
 			<div class="sidebar-heading">
 				Account
 			</div>
