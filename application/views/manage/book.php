@@ -56,6 +56,7 @@
                                 <th scope="col">Halaman</th>
                                 <th scope="col">Letak</th>
                                 <th scope="col">Jumlah</th>
+                                <th scope="col">Tersisa</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -64,15 +65,16 @@
                             <?php $i = 0 ;foreach ($buku as $b) { $i++; ?>
                             <tr>
                                 <th schope="row"><?= $i ?></th>
-                                <td><?= $b['judul'] ?></td>
-                                <td><?= $b['penulis'] ?></td>
-                                <td><?= $b['tahun'] ?></td>
-                                <td><?= $b['penerbit'] ?></td>
-                                <td><?= $b['kota_terbit'] ?></td>
-                                <td><?= $b['sub_judul'] ?></td>
+                                <td style="text-align: center;"><?= $b['judul'] ?></td>
+                                <td style="text-align: center;"><?= $b['penulis'] ?></td>
+                                <td style="text-align: center;"><?= $b['tahun'] ?></td>
+                                <td style="text-align: center;"><?= $b['penerbit'] ?></td>
+                                <td style="text-align: center;"><?= $b['kota_terbit'] ?></td>
+                                <td style="text-align: center;"><?= $b['sub_judul'] ?></td>
                                 <td style="text-align: center;"><?= $b['jumlah_halaman'] ?></td>
-                                <td><?= $b['letak_buku'] ?></td>
+                                <td style="text-align: center;"><?= $b['letak_buku'] ?></td>
                                 <td style="text-align: center;"><?= $b['jumlah'] ?></td>
+                                <td style="text-align: center;"><?= (int) $b['jumlah'] - count($jumlah_dipinjam[$i-1]) ?></td>
                                 <td style="text-align: center;">
                                     <a class="ubahBuku" href="#" data-toggle="modal" data-target="#bookModal"
                                         data-id="<?= $b['id'] ?>"><i class="fas fa-edit"></i></a>

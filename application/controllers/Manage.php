@@ -196,7 +196,20 @@ class Manage extends CI_Controller {
         $this->pagination->initialize($config);
 
         $data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data['buku'] = $datas;           
+        $data['buku'] = $datas;
+        $data['jumlah_dipinjam'] = array();
+
+//		var_dump($data['buku']);
+//		die;
+
+        for ($i = 0; $i < count($data['buku']); $i++){
+        	$jumlah = $this->mng->jumlahBukuDipinjam($data['buku'][$i]['id']);
+        	array_push($data['jumlah_dipinjam'], $jumlah);
+		}
+
+//        var_dump($data['jumlah_dipinjam']);
+//        die;
+
         $data['pagination'] = $this->pagination->create_links();
         $data['title'] = "Manajemen Buku";
         $data['index'] = 2;
@@ -369,10 +382,13 @@ class Manage extends CI_Controller {
 
 		$data['title'] = "Manajemen Peminjaman";
 		$data['index'] = 4;
-		$data['peminjaman'] = $this->mng->getAllPeminjaman();
+		$data['peminjaman'] = $this->mng->getAllPeminjamanBuku();
+
+		/*
 		$data['data_peminjaman'] = $this->mng->getAllDataPeminjaman();
 		$data['buku_dipinjam'] = $this->mng->getAllBukuDipinjam();
 		$data['user_peminjam'] = $this->mng->getAllUserPeminjam();
+		*/
 
 //		var_dump($data['peminjaman']);
 //		die;
@@ -382,5 +398,9 @@ class Manage extends CI_Controller {
 		$this->load->view('templates/topbar');
 		$this->load->view('manage/peminjaman',$data);
 		$this->load->view('templates/footer');
+	}
+
+	public function kembalikan(){
+
 	}
 }
