@@ -184,7 +184,13 @@ class Manage_model extends CI_Model
 
 	public function getAllIdPeminjamanBuku()
 	{
-		$query = $this->db->get('peminjaman_pengembalian');
+		$this->db->select('*');
+		$this->db->from('peminjaman_pengembalian');
+		$this->db->order_by('tanggal_peminjaman', 'DESC');
+		$this->db->where('status', 0);
+
+		$query = $this->db->get();
+
 		return $query->result_array();
 	}
 
