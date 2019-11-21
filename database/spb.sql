@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2019 at 04:28 PM
+-- Generation Time: Nov 21, 2019 at 06:52 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -47,17 +47,17 @@ CREATE TABLE `buku` (
 
 INSERT INTO `buku` (`id`, `judul`, `penulis`, `tahun`, `penerbit`, `kota_terbit`, `sub_judul`, `jumlah_halaman`, `letak_buku`, `jumlah`) VALUES
 (1, 'Java', 'Mark O\'Brienz', '2019', 'IT Books', 'Mississippi', 'All about Java', '820', 'Lantai 2 > Rak 3 > CDG', '6'),
-(2, 'Python', 'John', '2018', 'IT Books', 'Michigan', 'All about Python', '790', 'Lantai 2 > Rak 3-2 > CDG', '8'),
+(2, 'Python', 'John', '2018', 'IT Books', 'Michigan', 'All about Python', '790', 'Lantai 2 > Rak 3-2 > CDG', '4'),
 (9, 'CSS', 'Dave', '2018', 'IT Books', 'Birmingham', 'All about CSS', '431', 'Lantai 2 > Rak 3 > PMR', '9'),
-(157, '13', '13', '13', '13', '13', '13', '13', '13', '13'),
-(158, '14', '14', '14', '14', '14', '14', '14', '14', '14'),
-(159, 'ASD', 'dummyASD', '5', 'dummy', 'dummy', 'dummy', '1', 'dummy', '1'),
+(157, 'The 13', 'Novel', '2013', 'Novel', 'Palembang', 'Novels', '98', 'Lantai 1 > Rak 2', '12'),
+(158, 'IT', 'Clown', '2017', 'Horror', 'Chillie', 'Terrible', '91', 'Lantai 5 > Rak 8', '13'),
+(159, 'Kali Linux', 'Owasp', '2019', 'Owasp', 'New York', 'Hacking for dummies', '353', 'Lantai 1 > Rak 2', '12'),
 (162, 'Novel', 'dummy', '2012', 'dummy', 'dummy', 'dummy', '122', 'dummy', '12'),
-(163, 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy'),
-(164, 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy'),
-(165, 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy'),
-(168, 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy'),
-(169, 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy', 'dummy');
+(163, 'Networking', 'dave', '2013', 'IT', 'Bandung', 'All about networking', '188', 'lantai 3 > rak 3.9', '14'),
+(164, 'Ubuntu', 'Ubuntu', '2017', 'Operating System', 'Tasik', 'Operating System', '89', 'Lantai 2 > Rak 5', '6'),
+(165, 'Codeigniter', 'CI', '2015', 'Codeigniter', 'Berlin', 'All about CI', '201', 'Lantai 3 > Rak 1', '5'),
+(168, 'SBAdmin', 'SBAdmin', '2017', 'SBAdmin', 'Manchester', 'All about UI', '86', 'Lantai 3 > Rak 8', '8'),
+(169, 'Wifi', 'john', '2018', 'Informatika', 'semarang', 'semua tentang wifi', '121', 'Lantai 3 > Rak 4', '8');
 
 -- --------------------------------------------------------
 
@@ -109,6 +109,35 @@ INSERT INTO `data_peminjaman_pengembalian` (`id`, `id_user`, `tanggal_peminjaman
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `peminjaman_pengembalian`
+--
+
+CREATE TABLE `peminjaman_pengembalian` (
+  `id` int(11) NOT NULL,
+  `id_user` varchar(255) NOT NULL,
+  `id_buku` int(6) NOT NULL,
+  `tanggal_peminjaman` date NOT NULL,
+  `tanggal_pengembalian` date NOT NULL,
+  `denda` varchar(255) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `peminjaman_pengembalian`
+--
+
+INSERT INTO `peminjaman_pengembalian` (`id`, `id_user`, `id_buku`, `tanggal_peminjaman`, `tanggal_pengembalian`, `denda`, `status`) VALUES
+(2, '2', 1, '2019-11-17', '2019-11-21', '0', 0),
+(4, '7', 2, '2019-11-06', '2019-11-21', '0', 0),
+(5, '8', 1, '2019-11-08', '0000-00-00', '0', 0),
+(6, '8', 2, '2019-11-21', '2019-11-21', '0', 0),
+(9, '8', 2, '2019-11-21', '2019-11-21', '0', 1),
+(10, '7', 2, '2019-11-21', '2019-11-21', '0', 1),
+(11, '7', 1, '2019-11-21', '2019-11-21', '0', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -153,6 +182,12 @@ ALTER TABLE `data_peminjaman_pengembalian`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `peminjaman_pengembalian`
+--
+ALTER TABLE `peminjaman_pengembalian`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -179,6 +214,12 @@ ALTER TABLE `buku_yang_dipinjam`
 --
 ALTER TABLE `data_peminjaman_pengembalian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `peminjaman_pengembalian`
+--
+ALTER TABLE `peminjaman_pengembalian`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`
