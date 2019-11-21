@@ -177,4 +177,68 @@ $(document).ready(function () {
         })
     });
 
+    // autocomplete nama user peminjam
+    $('#CariNamaPeminjam').keyup(function () {
+        var searchText = $(this).val();
+        if (searchText != '') {
+            $.ajax({
+                url: "http://localhost/SPB/manage/searchUserAjax",
+                method: 'post',
+                data: {
+                    query: searchText
+                },
+                success: function (response) {
+                    if (response == 'null') {
+                        $('#namaPeminjam').html('<option value="">Data tidak ditemukan</option>');
+                    } else {
+                        $('#namaPeminjam').html(response);
+                    }
+                }
+            });
+        }
+    });
+
+    // autocomplete buku untuk dipinjam
+    $('#CariBukuDipinjam').keyup(function () {
+        var searchText = $(this).val();
+        if (searchText != '') {
+            $.ajax({
+                url: "http://localhost/SPB/manage/searchBukuAjax",
+                method: 'post',
+                data: {
+                    query: searchText
+                },
+                success: function (response) {
+                    if (response == 'null') {
+                        $('#bukuDipinjam').html('<option value="">Data tidak ditemukan</option>');
+                    } else {
+                        $('#bukuDipinjam').html(response);
+                    }
+                }
+            });
+        }
+    });
+
+    $('#CariNamaPeminjam').click(function () {
+        $('#namaPeminjam').html('<option>Data tidak ditemukan</option>');
+    });
+
+    $('#namaPeminjam').click(function () {
+        $('#CariNamaPeminjam').val('');
+    });
+
+    $('#CariBukuDipinjam').click(function () {
+        $('#bukuDipinjam').html('<option>Data tidak ditemukan</option>');
+    });
+
+    $('#bukuDipinjam').click(function () {
+        $('#CariBukuDipinjam').val('');
+    });
+
+    $('.tombolKembalikan').click(function () {
+        const id = $(this).data('id');
+        $('#idPeminjaman').val(id);
+        console.log($('#idPeminjaman').val());
+    })
+
 });
