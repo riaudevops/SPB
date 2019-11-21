@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2019 at 06:52 AM
+-- Generation Time: Nov 21, 2019 at 05:06 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -47,7 +47,7 @@ CREATE TABLE `buku` (
 
 INSERT INTO `buku` (`id`, `judul`, `penulis`, `tahun`, `penerbit`, `kota_terbit`, `sub_judul`, `jumlah_halaman`, `letak_buku`, `jumlah`) VALUES
 (1, 'Java', 'Mark O\'Brienz', '2019', 'IT Books', 'Mississippi', 'All about Java', '820', 'Lantai 2 > Rak 3 > CDG', '6'),
-(2, 'Python', 'John', '2018', 'IT Books', 'Michigan', 'All about Python', '790', 'Lantai 2 > Rak 3-2 > CDG', '4'),
+(2, 'Python', 'John', '2018', 'IT Books', 'Michigan', 'All about Python', '790', 'Lantai 2 > Rak 3-2 > CDG', '5'),
 (9, 'CSS', 'Dave', '2018', 'IT Books', 'Birmingham', 'All about CSS', '431', 'Lantai 2 > Rak 3 > PMR', '9'),
 (157, 'The 13', 'Novel', '2013', 'Novel', 'Palembang', 'Novels', '98', 'Lantai 1 > Rak 2', '12'),
 (158, 'IT', 'Clown', '2017', 'Horror', 'Chillie', 'Terrible', '91', 'Lantai 5 > Rak 8', '13'),
@@ -127,13 +127,21 @@ CREATE TABLE `peminjaman_pengembalian` (
 --
 
 INSERT INTO `peminjaman_pengembalian` (`id`, `id_user`, `id_buku`, `tanggal_peminjaman`, `tanggal_pengembalian`, `denda`, `status`) VALUES
-(2, '2', 1, '2019-11-17', '2019-11-21', '0', 0),
-(4, '7', 2, '2019-11-06', '2019-11-21', '0', 0),
-(5, '8', 1, '2019-11-08', '0000-00-00', '0', 0),
-(6, '8', 2, '2019-11-21', '2019-11-21', '0', 0),
+(2, '2', 1, '2019-11-17', '2019-11-21', '0', 1),
+(4, '7', 2, '2019-11-06', '2019-11-21', '4000', 1),
+(5, '8', 1, '2019-11-08', '2019-11-21', '3000', 1),
+(6, '8', 2, '2019-11-08', '0000-00-00', '0', 0),
 (9, '8', 2, '2019-11-21', '2019-11-21', '0', 1),
 (10, '7', 2, '2019-11-21', '2019-11-21', '0', 1),
-(11, '7', 1, '2019-11-21', '2019-11-21', '0', 1);
+(11, '7', 1, '2019-11-21', '2019-11-21', '0', 1),
+(13, '7', 9, '2019-11-12', '2019-11-21', '1000', 1),
+(14, '8', 164, '2019-11-21', '0000-00-00', '0', 0),
+(15, '8', 2, '2019-11-21', '2019-11-21', '0', 1),
+(16, '7', 2, '2019-11-21', '2019-11-21', '0', 1),
+(17, '7', 2, '2019-11-09', '0000-00-00', '0', 0),
+(18, '2', 2, '2019-11-05', '0000-00-00', '0', 0),
+(19, '2', 162, '2019-11-02', '0000-00-00', '0', 0),
+(20, '8', 2, '2019-11-01', '0000-00-00', '0', 0);
 
 -- --------------------------------------------------------
 
@@ -155,9 +163,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `username`, `password`, `hak_akses`) VALUES
 (1, 'rez', 'admin', '$2y$10$iPQP1wbV2PaHmmhr6t1E8uqUR3sUSFfyMtcDF.S.0xG8B.DpQtVVq', 1),
-(2, 'rez2', 'user', '$2y$10$dvMXKVoLV8ye4cAtN1UTeeYWG7wx3JtUaI75coczy9mxBjsQv4aOG', 0),
-(7, 'Asep', 'asep', '$2y$10$ymfd3cbGjxFqP1R9im5nd.Koj0eXf8IoZBI.bSpL6cPO68.vKHgZ.', 0),
-(8, 'fauzan', 'fauzan', '$2y$10$pIzv4mZ4HUPYwEBA22dJ6un2xquVczKpK1qXnIxedqshwGTOe/QlC', 0);
+(2, 'rez2', '345', '$2y$10$dvMXKVoLV8ye4cAtN1UTeeYWG7wx3JtUaI75coczy9mxBjsQv4aOG', 0),
+(7, 'Asep', '123', '$2y$10$ymfd3cbGjxFqP1R9im5nd.Koj0eXf8IoZBI.bSpL6cPO68.vKHgZ.', 0),
+(8, 'fauzan', '234', '$2y$10$pIzv4mZ4HUPYwEBA22dJ6un2xquVczKpK1qXnIxedqshwGTOe/QlC', 0);
 
 --
 -- Indexes for dumped tables
@@ -219,7 +227,7 @@ ALTER TABLE `data_peminjaman_pengembalian`
 -- AUTO_INCREMENT for table `peminjaman_pengembalian`
 --
 ALTER TABLE `peminjaman_pengembalian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `user`

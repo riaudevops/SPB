@@ -166,9 +166,9 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="username" class="col-sm-3 col-form-label">Username</label>
+						<label for="username" class="col-sm-3 col-form-label">No Keanggotaan</label>
 						<div class="col-sm-9">
-							<input autocomplete="off" name="username" type="text" class="form-control" id="username" placeholder="Username" required>
+							<input autocomplete="off" name="username" type="number" class="form-control" id="username" placeholder="No Keanggotaan" required>
 							<?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
 						</div>
 					</div>
@@ -250,7 +250,9 @@
 			<div class="modal-body">
 				Ingin mengembalikan buku? Pastikan peminjam <b>sudah membayar denda</b> keterlambatan meminjam buku jika ada
 				<form action="<?= base_url('manage/kembalikan'); ?>" method="POST" class="mt-3">
-					<input type="hidden" name="idPeminjaman" id="idPeminjaman" name="idPeminjaman">
+					<input type="hidden" name="idPeminjaman" id="idPeminjaman">
+					<input type="hidden" name="denda" id="denda">
+
 					<button id="submitPeminjamanButton" type="submit" class="btn btn-warning btn-user btn-block">
 						Kembalikan
 					</button>
@@ -262,42 +264,43 @@
 			</div>
 		</div>
 	</div>
+</div>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Keluar dari sistem?</h5>
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Pilih Logout untuk mengakhiri session dan keluar dari sistem</div>
-				<div class="modal-footer">
-					<button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
-					<a class="btn btn-danger" href="<?= base_url('auth/logout') ?>">Logout</a>
-				</div>
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Keluar dari sistem?</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">Pilih Logout untuk mengakhiri session dan keluar dari sistem</div>
+			<div class="modal-footer">
+				<button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+				<a class="btn btn-danger" href="<?= base_url('auth/logout') ?>">Logout</a>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<!-- Bootstrap core JavaScript-->
-	<!-- <script src="<?php // base_url('assets/'); 
-						?>vendor/jquery/jquery.min.js"></script> -->
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<!-- <script src="<?php // base_url('assets/'); 
+					?>vendor/jquery/jquery.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
-	<script src="<?= base_url('assets/'); ?>js/script.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
+<script src="<?= base_url('assets/'); ?>js/script.js"></script>
 
-	<script>
-	</script>
+<script>
+</script>
 
-	</body>
+</body>
 
-	</html>
+</html>

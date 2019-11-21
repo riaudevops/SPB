@@ -3,7 +3,7 @@
   <!-- Page Heading -->
   <div class="row">
     <div class="col">
-      <?= $this->session->flashdata('message');?>
+      <?= $this->session->flashdata('message'); ?>
     </div>
   </div>
 
@@ -19,8 +19,7 @@
             <option value="Judul">Judul</option>
             <option value="Penulis">Penulis</option>
           </select>
-          <input name="keyword" id="keyword" autocomplete="off" type="text" class="w-50 form-control"
-            placeholder="Kata Kunci">
+          <input name="keyword" id="keyword" autocomplete="off" type="text" class="w-50 form-control" placeholder="Kata Kunci">
           <div class="input-group-append">
             <button class="btn btn-primary" type="submit" id="tombolCari">Cari</button>
           </div>
@@ -46,29 +45,26 @@
                 <th scope="col">Sub Judul</th>
                 <th scope="col">Halaman</th>
                 <th scope="col">Letak</th>
-                <th scope="col">Jumlah</th>
-                <th scope="col">Aksi</th>
+                <th scope="col">Tersedia</th>
               </tr>
             </thead>
             <tbody>
 
-              <?php $i = 0 ;foreach ($buku as $b) { $i++; ?>
-              <tr>
-                <th schope="row"><?= $i ?></th>
-                <td><?= $b['judul'] ?></td>
-                <td><?= $b['penulis'] ?></td>
-                <td><?= $b['tahun'] ?></td>
-                <td><?= $b['penerbit'] ?></td>
-                <td><?= $b['kota_terbit'] ?></td>
-                <td><?= $b['sub_judul'] ?></td>
-                <td style="text-align: center;"><?= $b['jumlah_halaman'] ?></td>
-                <td><?= $b['letak_buku'] ?></td>
-                <td style="text-align: center;"><?= $b['jumlah'] ?></td>
-                <td style="text-align: center;">
-                  <a class="ubahBuku" href="#" data-toggle="modal" data-target="#borrowBookModal" data-id="<?= $b['id'] ?>"><i
-                      class="fas fa-stopwatch"></i></a>
-                </td>
-              </tr>
+              <?php $i = 0;
+              foreach ($buku as $b) {
+                $i++; ?>
+                <tr>
+                  <th schope="row"><?= $i ?></th>
+                  <td><?= $b['judul'] ?></td>
+                  <td><?= $b['penulis'] ?></td>
+                  <td><?= $b['tahun'] ?></td>
+                  <td><?= $b['penerbit'] ?></td>
+                  <td><?= $b['kota_terbit'] ?></td>
+                  <td><?= $b['sub_judul'] ?></td>
+                  <td style="text-align: center;"><?= $b['jumlah_halaman'] ?></td>
+                  <td><?= $b['letak_buku'] ?></td>
+                  <td style="text-align: center;"><?= ((int) $b['jumlah'] - count($jumlah_dipinjam[$i - 1])) . ' dari ' . (int) $b['jumlah'] . ' eksemplar' ?></td>
+                </tr>
               <?php } ?>
             </tbody>
           </table>

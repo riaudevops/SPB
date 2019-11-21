@@ -238,7 +238,6 @@ $(document).ready(function () {
     $('.tombolKembalikan').click(function () {
         const id = $(this).data('id');
         $('#idPeminjaman').val(id);
-        console.log($('#idPeminjaman').val());
     })
 
 });

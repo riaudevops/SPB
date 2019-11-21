@@ -141,7 +141,7 @@
 
 										?>
 
-									<td style="text-align: center;"><?= 'Rp. ' . $denda; ?></td>
+									<td class="teksDenda" style="text-align: center;"><?= 'Rp. ' . $denda; ?></td>
 
 									<td style="text-align: center;">
 										<button id="tombolKembalikan" class="tombolKembalikan btn btn-info" href="#" data-toggle="modal" data-target="#returnBookModal" data-id="<?= $id_peminjaman[$k++]['id'] ?>"><i class="fas fa-undo"></i> Kembalikan</button>

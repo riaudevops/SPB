@@ -1,7 +1,5 @@
 <!-- Sidebar -->
-<ul
-	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion <?php if (!isset($_SESSION['username'])) echo "toggled" ?>"
-	id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion <?php if (!isset($_SESSION['username'])) echo "toggled" ?>" id="accordionSidebar">
 
 	<!-- Sidebar - Brand -->
 	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url() ?>">
@@ -64,7 +62,7 @@
 
 			<li class="nav-item <?php if ($index == 4) echo "active" ?>">
 				<a class="nav-link" href="<?= base_url('manage/peminjaman') ?>">
-					<i class="fas fa-fw fa-undo"></i>
+					<i class="fas fa-fw fa-exchange-alt"></i>
 					<span>Manajemen Peminjaman</span></a>
 			</li>
 
@@ -75,9 +73,9 @@
 			</div>
 
 			<li class="nav-item <?php if ($index == 5) echo "active" ?>">
-				<a class="nav-link" href="<?= base_url('manage/user') ?>">
+				<a class="nav-link" href="<?= base_url('history') ?>">
 					<i class="fas fa-fw fa-clipboard"></i>
-					<span>Riwayat Peminjaman Pengembalian</span></a>
+					<span>Riwayat Peminjaman</span></a>
 			</li>
 
 			<hr class="sidebar-divider">
@@ -112,8 +110,8 @@
 				History
 			</div>
 
-			<li class="nav-item">
-				<a class="nav-link" href="">
+			<li class="nav-item <?php if ($index == 2) echo "active" ?>">
+				<a class="nav-link" href="<?= base_url('history') ?>">
 					<i class="fas fa-fw fa-history"></i>
 					<span>Riwayat Peminjaman</span></a>
 			</li>
@@ -130,7 +128,7 @@
 			</li>
 
 		<?php } ?>
-	<?php else: ?>
+	<?php else : ?>
 
 		<li class="nav-item">
 			<a class="nav-link" href="<?= base_url('auth') ?>">

@@ -194,13 +194,19 @@ class Manage_model extends CI_Model
 		return $query->result_array();
 	}
 
+	public function getDataPeminjamanById($id) // by id peminjaman
+	{
+		$query = $this->db->get_where('peminjaman_pengembalian', array('id' => $id));
+		return $query->result_array();
+	}
+
 	public function getAllDataPeminjaman()
 	{
 		$query = $this->db->get('buku_yang_dipinjam');
 		return $query->result_array();
 	}
 
-	public function getDataPeminjaman($id)
+	public function getDataPeminjaman($id) // by id user
 	{
 		$query = $this->db->get_where('buku_yang_dipinjam', array('id_user' => $id));
 		return $query->result_array();
@@ -253,7 +259,7 @@ class Manage_model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function jumlahBukuDipinjamSingle($id) ///////////////////////////////////////////////////////////
+	public function jumlahBukuDipinjamSingle($id)
 	{
 		$query = $this->db->get_where('peminjaman_pengembalian', array('status' => 0, 'id_buku' => $id));
 		return $query->row_array();

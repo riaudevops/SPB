@@ -522,16 +522,21 @@ class Manage extends CI_Controller
     public function kembalikan()
     {
         $id = $this->input->post('idPeminjaman');
+
+        $data_peminjaman = $this->mng->getDataPeminjamanById($id);
+
         $tanggal_pengembalian = date('Y-m-d');
+
+        $denda = $this->_hitungDenda($data_peminjaman[0]['tanggal_peminjaman']);
 
         $data = array(
             'id' => $id,
             'tanggal_pengembalian' => $tanggal_pengembalian,
-            'denda' => 0,
+            'denda' => $denda,
             'status' => 1,
         );
 
-        // var_dump($data);
+        // var_dump($denda);
         // die;
 
         if ($this->mng->pengembalianPeminjaman($data)) {
@@ -540,6 +545,41 @@ class Manage extends CI_Controller
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Terjadi kesalahan, gagal mengembalikan peminjaman buku</div>');
             redirect('manage/peminjaman');
+        }
+    }
+
+    private function _hitungDenda($tanggalPeminjaman)
+    {
+        $date1 = strtotime(date('Y-m-d'));
+        $date2 = strtotime(date('Y-m-d', strtotime($tanggalPeminjaman . ' + 7 days')));
+
+        if ($date2 > $date1) {
+            $days = 0;
+            return 0;
+        } else {
+            // Formulate the Difference between two dates
+            $diff = abs($date1 - $date2);
+
+
+            // To get the year divide the resultant date into
+            // total seconds in a year (365*60*60*24)
+            $years = floor($diff / (365 * 60 * 60 * 24));
+
+
+            // To get the month, subtract it with years and
+            // divide the resultant date into
+            // total seconds in a month (30*60*60*24)
+            $months = floor(($diff - $years * 365 * 60 * 60 * 24)
+                / (30 * 60 * 60 * 24));
+
+
+            // To get the day, subtract it with years and
+            // months and divide the resultant date into
+            // total seconds in a days (60*60*24)
+            $days = floor(($diff - $years * 365 * 60 * 60 * 24 -
+                $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+
+            return (int) $days * 500;
         }
     }
 }
