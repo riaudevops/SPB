@@ -1,10 +1,11 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Manajemen Buku</h1>
 
     <div class="row">
         <div class="col">
-            <?= $this->session->flashdata('message');?>
+            <?= $this->session->flashdata('message'); ?>
         </div>
     </div>
     <div class="row">
@@ -27,8 +28,7 @@
                         <option value="Judul">Judul</option>
                         <option value="Penulis">Penulis</option>
                     </select>
-                    <input name="keyword" id="keyword" autocomplete="off" type="text" class="w-50 form-control"
-                        placeholder="Kata Kunci" required>
+                    <input name="keyword" id="keyword" autocomplete="off" type="text" class="w-50 form-control" placeholder="Kata Kunci" required>
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit" id="tombolCari">Cari</button>
                     </div>
@@ -62,26 +62,26 @@
                         </thead>
                         <tbody>
 
-                            <?php $i = 0 ;foreach ($buku as $b) { $i++; ?>
-                            <tr>
-                                <th schope="row"><?= $i ?></th>
-                                <td style="text-align: center;"><?= $b['judul'] ?></td>
-                                <td style="text-align: center;"><?= $b['penulis'] ?></td>
-                                <td style="text-align: center;"><?= $b['tahun'] ?></td>
-                                <td style="text-align: center;"><?= $b['penerbit'] ?></td>
-                                <td style="text-align: center;"><?= $b['kota_terbit'] ?></td>
-                                <td style="text-align: center;"><?= $b['sub_judul'] ?></td>
-                                <td style="text-align: center;"><?= $b['jumlah_halaman'] ?></td>
-                                <td style="text-align: center;"><?= $b['letak_buku'] ?></td>
-                                <td style="text-align: center;"><?= $b['jumlah'] ?></td>
-                                <td style="text-align: center;"><?= (int) $b['jumlah'] - count($jumlah_dipinjam[$i-1]) ?></td>
-                                <td style="text-align: center;">
-                                    <a class="ubahBuku" href="#" data-toggle="modal" data-target="#bookModal"
-                                        data-id="<?= $b['id'] ?>"><i class="fas fa-edit"></i></a>
-                                    <a class="tombolHapusBuku" href="#" data-toggle="modal" data-target="#deleteBookModal" data-id="<?= $b['id'] ?>"><i
-                                            class="fas fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
+                            <?php $i = 0;
+                            foreach ($buku as $b) {
+                                $i++; ?>
+                                <tr>
+                                    <th schope="row"><?= $i ?></th>
+                                    <td style="text-align: center;"><?= $b['judul'] ?></td>
+                                    <td style="text-align: center;"><?= $b['penulis'] ?></td>
+                                    <td style="text-align: center;"><?= $b['tahun'] ?></td>
+                                    <td style="text-align: center;"><?= $b['penerbit'] ?></td>
+                                    <td style="text-align: center;"><?= $b['kota_terbit'] ?></td>
+                                    <td style="text-align: center;"><?= $b['sub_judul'] ?></td>
+                                    <td style="text-align: center;"><?= $b['jumlah_halaman'] ?></td>
+                                    <td style="text-align: center;"><?= $b['letak_buku'] ?></td>
+                                    <td style="text-align: center;"><?= $b['jumlah'] ?></td>
+                                    <td style="text-align: center;"><?= (int) $b['jumlah'] - count($jumlah_dipinjam[$i - 1]) ?></td>
+                                    <td style="text-align: center;">
+                                        <a class="ubahBuku" href="#" data-toggle="modal" data-target="#bookModal" data-id="<?= $b['id'] ?>"><i class="fas fa-edit"></i></a>
+                                        <a class="tombolHapusBuku" href="#" data-toggle="modal" data-target="#deleteBookModal" data-id="<?= $b['id'] ?>"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>

@@ -1,10 +1,19 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Riwayat Peminjaman Buku</h1>
 
     <div class="row">
         <div class="col">
             <?= $this->session->flashdata('message'); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-primary" href="<?= base_url('history/cetakLaporan') ?>">
+                <i class="fas fa-file-alt"></i>
+                Cetak Laporan
+            </a>
         </div>
     </div>
 
