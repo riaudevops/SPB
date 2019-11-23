@@ -31,4 +31,34 @@ class Home_model extends CI_Model
         $query = $this->db->get_where('peminjaman_pengembalian', array('status' => 0, 'id_buku' => $id));
         return $query->result_array();
     }
+
+    public function getJumlahBuku()
+    {
+        $query = $this->db->count_all('buku');
+        return $query;
+    }
+
+    public function getJumlahUser()
+    {
+        $this->db->like('hak_akses', 0);
+        $this->db->from('user');
+        $query = $this->db->count_all_results();
+        return $query;
+    }
+
+    public function getJumlahPeminjaman()
+    {
+        $this->db->like('status', 0);
+        $this->db->from('peminjaman_pengembalian');
+        $query = $this->db->count_all_results();
+        return $query;
+    }
+
+    public function getJumlahPengembalian()
+    {
+        $this->db->like('status', 1);
+        $this->db->from('peminjaman_pengembalian');
+        $query = $this->db->count_all_results();
+        return $query;
+    }
 }

@@ -53,6 +53,12 @@ class Home extends CI_Controller
         $data['buku'] = $datas;
         $data['pagination'] = $this->pagination->create_links();
 
+        $data['jumlah_buku'] = $this->home->getJumlahBuku();
+        $data['jumlah_user'] = $this->home->getJumlahUser();
+        $data['jumlah_peminjaman'] = $this->home->getJumlahPeminjaman();
+        $data['jumlah_pengembalian'] = $this->home->getJumlahPengembalian();
+
+
         $data['jumlah_dipinjam'] = array();
 
         for ($i = 0; $i < count($data['buku']); $i++) {
@@ -60,7 +66,7 @@ class Home extends CI_Controller
             array_push($data['jumlah_dipinjam'], $jumlah);
         }
 
-        // var_dump($data['jumlah_dipinjam']);
+        // var_dump($data['jumlah_pengembalian']);
         // die;
 
         $data['title'] = "Homepage";
@@ -71,7 +77,7 @@ class Home extends CI_Controller
 
         if ($this->session->userdata('username') !== null) {
             if ($this->session->userdata('hak_akses') == 1) {
-                $this->load->view('home/dashboard');
+                $this->load->view('home/dashboard', $data);
             } else {
                 $this->load->view('home/user_dashboard', $data);
             }
