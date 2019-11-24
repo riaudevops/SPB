@@ -269,10 +269,25 @@ class Manage_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('peminjaman_pengembalian');
-		$this->db->join('user', 'peminjaman_pengembalian.id_user = user.id');
 		$this->db->join('buku', 'peminjaman_pengembalian.id_buku = buku.id');
+		$this->db->join('user', 'peminjaman_pengembalian.id_user = user.id');
 		$this->db->order_by('tanggal_peminjaman', 'DESC');
 		$this->db->LIKE('user.name', $keyword);
+		$this->db->WHERE('peminjaman_pengembalian.status', 0);
+		$query = $this->db->get();
+
+		return $query->result_array();
+	}
+
+	public function searchIdPeminjam($keyword)
+	{
+		$this->db->select('peminjaman_pengembalian.id');
+		$this->db->from('peminjaman_pengembalian');
+		$this->db->join('buku', 'peminjaman_pengembalian.id_buku = buku.id');
+		$this->db->join('user', 'peminjaman_pengembalian.id_user = user.id');
+		$this->db->order_by('tanggal_peminjaman', 'DESC');
+		$this->db->LIKE('user.name', $keyword);
+		$this->db->WHERE('peminjaman_pengembalian.status', 0);
 		$query = $this->db->get();
 
 		return $query->result_array();

@@ -471,9 +471,10 @@ class Manage extends CI_Controller
             $datas = $this->mng->searchPeminjam($keyword);
 
             if ($datas) {
-                $data['peminjaman'] = $datas;
                 $data['title'] = "Manajemen Peminjaman";
                 $data['index'] = 4;
+                $data['peminjaman'] = $datas;
+                $data['id_peminjaman'] = $this->mng->searchIdPeminjam($keyword);
 
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/sidebar', $data);
