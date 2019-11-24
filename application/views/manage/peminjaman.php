@@ -1,3 +1,7 @@
+<?php
+// Set timezone 
+date_default_timezone_set('Asia/Jakarta');
+?>
 <div class="container-fluid">
 
 	<!-- Page Heading -->

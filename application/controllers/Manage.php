@@ -15,6 +15,8 @@ class Manage extends CI_Controller
         if ($this->session->userdata('hak_akses') != 1) {
             redirect('home');
         }
+
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     public function index()
