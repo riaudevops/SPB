@@ -12,14 +12,15 @@
                         <div class="col-lg">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Login Page</h1>
+                                    <h1 class="h4 text-gray-900 mb-4"><i class="fas fa-book-reader"></i> Sistem Peminjaman Buku Online</h1>
+                                    <h5 class="h4 text-gray-900 mb-4">Silahkan Login</h5>
                                 </div>
 
                                 <?= $this->session->flashdata('message'); ?>
 
                                 <form class="user" method="post" action="<?= base_url('auth'); ?>">
                                     <div class="form-group">
-                                        <input autocomplete="off" type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username" value="<?= set_value('username'); ?>">
+                                        <input autocomplete="off" type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username / No Keanggotaan" value="<?= set_value('username'); ?>">
                                         <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">

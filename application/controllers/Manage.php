@@ -407,11 +407,15 @@ class Manage extends CI_Controller
     {
         $this->form_validation->set_rules('tanggalPeminjaman', 'tanggalPeminjaman', 'trim|required');
         $this->form_validation->set_rules('namaPeminjam', 'namaPeminjam', 'trim|required');
-        $this->form_validation->set_rules('bukuDipinjam', 'bukuDipinjam', 'trim|required');
+        $this->form_validation->set_rules('bukuDipinjam', 'bukuDipinjam', 'required');
 
         $tanggal_peminjaman = date('Y-m-d');
         $id_user = $this->mng->getUserIdByName(htmlspecialchars($this->input->post('namaPeminjam')));
-        $id_buku = $this->mng->getBookIdByName(htmlspecialchars($this->input->post('bukuDipinjam')));
+        $id_buku = $this->mng->getBookIdByName(($this->input->post('bukuDipinjam')));
+
+        // var_dump($this->input->post('bukuDipinjam'));
+        // var_dump($id_buku);
+        // die;
 
         $cekPeminjaman = $this->mng->getDataPeminjamanByIdUser($id_user['id']);
 
@@ -514,7 +518,9 @@ class Manage extends CI_Controller
 
         if (!empty($data['isi'])) {
             foreach ($data['isi'] as $judul) {
-                echo "<option value=" . $judul['judul'] . ">" . $judul['judul'] . "</option>";
+                $tmp = $judul['judul'];
+                // echo "<option value=" . $judul['judul'] . \"$key\" . ">" . $judul['judul'] . "</option>";
+                echo "<option value=\"$tmp\">$tmp</option>";
             }
             echo '<br/>';
         } else {
