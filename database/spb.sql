@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2019 at 05:06 PM
+-- Generation Time: Nov 25, 2019 at 06:27 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -51,7 +51,7 @@ INSERT INTO `buku` (`id`, `judul`, `penulis`, `tahun`, `penerbit`, `kota_terbit`
 (9, 'CSS', 'Dave', '2018', 'IT Books', 'Birmingham', 'All about CSS', '431', 'Lantai 2 > Rak 3 > PMR', '9'),
 (157, 'The 13', 'Novel', '2013', 'Novel', 'Palembang', 'Novels', '98', 'Lantai 1 > Rak 2', '12'),
 (158, 'IT', 'Clown', '2017', 'Horror', 'Chillie', 'Terrible', '91', 'Lantai 5 > Rak 8', '13'),
-(159, 'Kali Linux', 'Owasp', '2019', 'Owasp', 'New York', 'Hacking for dummies', '353', 'Lantai 1 > Rak 2', '12'),
+(159, 'Kali Linux', 'Owasp', '2019', 'Owasp', 'New York', 'Hacking for dummies', '353', 'Lantai 1 > Rak 2', '14'),
 (162, 'Novel', 'dummy', '2012', 'dummy', 'dummy', 'dummy', '122', 'dummy', '12'),
 (163, 'Networking', 'dave', '2013', 'IT', 'Bandung', 'All about networking', '188', 'lantai 3 > rak 3.9', '14'),
 (164, 'Ubuntu', 'Ubuntu', '2017', 'Operating System', 'Tasik', 'Operating System', '89', 'Lantai 2 > Rak 5', '6'),
@@ -138,10 +138,17 @@ INSERT INTO `peminjaman_pengembalian` (`id`, `id_user`, `id_buku`, `tanggal_pemi
 (14, '8', 164, '2019-11-21', '0000-00-00', '0', 0),
 (15, '8', 2, '2019-11-21', '2019-11-21', '0', 1),
 (16, '7', 2, '2019-11-21', '2019-11-21', '0', 1),
-(17, '7', 2, '2019-11-09', '0000-00-00', '0', 0),
-(18, '2', 2, '2019-11-05', '0000-00-00', '0', 0),
+(17, '7', 2, '2019-11-09', '2019-11-23', '3500', 1),
+(18, '2', 2, '2019-11-05', '2019-11-24', '6000', 1),
 (19, '2', 162, '2019-11-02', '0000-00-00', '0', 0),
-(20, '8', 2, '2019-11-01', '0000-00-00', '0', 0);
+(20, '8', 2, '2019-11-01', '0000-00-00', '0', 0),
+(21, '7', 164, '2019-11-24', '2019-11-24', '0', 1),
+(22, '2', 168, '2019-11-25', '2019-11-25', '0', 1),
+(23, '2', 163, '2019-11-25', '0000-00-00', '0', 0),
+(24, '2', 168, '2019-11-25', '0000-00-00', '0', 0),
+(25, '7', 168, '2019-11-25', '0000-00-00', '0', 0),
+(26, '7', 157, '2019-11-25', '0000-00-00', '0', 0),
+(27, '7', 159, '2019-11-25', '2019-11-25', '0', 1);
 
 -- --------------------------------------------------------
 
@@ -209,7 +216,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
 
 --
 -- AUTO_INCREMENT for table `buku_yang_dipinjam`
@@ -227,7 +234,7 @@ ALTER TABLE `data_peminjaman_pengembalian`
 -- AUTO_INCREMENT for table `peminjaman_pengembalian`
 --
 ALTER TABLE `peminjaman_pengembalian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `user`
