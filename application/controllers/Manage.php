@@ -337,10 +337,10 @@ class Manage extends CI_Controller
 
         if ($this->mng->deleteUser($id)) {
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil menghapus data user</div>');
-            redirect('manage/book');
+            redirect('manage/user');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Terjadi kesalahan, gagal menghapus data user</div>');
-            redirect('manage/book');
+            redirect('manage/user');
         }
     }
 

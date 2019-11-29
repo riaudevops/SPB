@@ -110,11 +110,14 @@ $(document).ready(function () {
             dataType: "JSON",
             success: function () {
                 alert('sukses menghapus data buku');
+                location.reload();
             },
             failure: function () {
                 alert('gagal menghapus data buku');
+                location.reload();
             }
         });
+        loadUlang();
     });
 
     $('.tambahUser').on('click', function () {
@@ -146,12 +149,15 @@ $(document).ready(function () {
             success: function () {
                 alert('sukses menghapus data buku');
                 console.log('Success');
+                location.reload();
             },
             failure: function () {
                 alert('gagal menghapus data buku');
                 console.log('Failure');
+                location.reload();
             }
         });
+        loadUlang();
     });
 
     $('.ubahUser').on('click', function () {

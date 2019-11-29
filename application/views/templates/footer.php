@@ -137,7 +137,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
-				<button id="tombolHapus" class="hapusBuku btn btn-danger" onclick="loadUlang()">Hapus</button>
+				<button id="tombolHapus" class="hapusBuku btn btn-danger">Hapus</button>
 			</div>
 		</div>
 	</div>
@@ -231,7 +231,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
-				<button id="tombolHapusUser" class="hapusUser btn btn-danger" onclick="loadUlang()">Hapus</button>
+				<button id="tombolHapusUser" class="hapusUser btn btn-danger">Hapus</button>
 			</div>
 		</div>
 	</div>
