@@ -37,7 +37,7 @@
 			<li class="nav-item <?php if ($index == 2) echo "active" ?>">
 				<a class="nav-link" href="<?= base_url('manage/book') ?>">
 					<i class="fas fa-fw fa-book"></i>
-					<span>Manajemen Buku</span></a>
+					<span>Mengelola Buku</span></a>
 			</li>
 
 			<hr class="sidebar-divider">
@@ -50,7 +50,7 @@
 			<li class="nav-item <?php if ($index == 3) echo "active" ?>">
 				<a class="nav-link" href="<?= base_url('manage/user') ?>">
 					<i class="fas fa-fw fa-user"></i>
-					<span>Manajemen Akun</span></a>
+					<span>Mengelola Data Pengguna</span></a>
 			</li>
 
 			<hr class="sidebar-divider">
@@ -63,7 +63,7 @@
 			<li class="nav-item <?php if ($index == 4) echo "active" ?>">
 				<a class="nav-link" href="<?= base_url('manage/peminjaman') ?>">
 					<i class="fas fa-fw fa-exchange-alt"></i>
-					<span>Manajemen Peminjaman</span></a>
+					<span>Mengelola Data Peminjaman Buku</span></a>
 			</li>
 
 			<hr class="sidebar-divider">
@@ -75,7 +75,7 @@
 			<li class="nav-item <?php if ($index == 5) echo "active" ?>">
 				<a class="nav-link" href="<?= base_url('history') ?>">
 					<i class="fas fa-fw fa-clipboard"></i>
-					<span>Riwayat Peminjaman</span></a>
+					<span>Cetak Riwayat Peminjaman</span></a>
 			</li>
 
 			<hr class="sidebar-divider">
