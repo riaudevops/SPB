@@ -374,7 +374,7 @@ class Manage extends CI_Controller
                 $this->load->view('templates/footer');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Kesalahan mencari user</div>');
-                redirect('manage/book');
+                redirect('manage/user');
             }
         }
     }

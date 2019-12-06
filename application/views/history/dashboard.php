@@ -43,7 +43,7 @@
                             foreach ($peminjaman as $p) {
                                 $nomor++; ?>
                                 <tr>
-                                    <th schope="row" style="text-align: center;"><?= $nomor ?></th>
+                                    <th schope="row" style="text-align: center;"><?= ($this->uri->segment(3)) ? $nomor+$this->uri->segment(3) : $nomor; ?></th>
 
                                     <!-- <td style="text-align: center;"><?php // echo date('d F Y', strtotime($p['tanggal_peminjaman']))  
                                                                                 ?></td> -->

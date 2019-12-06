@@ -66,7 +66,7 @@
                             foreach ($buku as $b) {
                                 $i++; ?>
                                 <tr>
-                                    <th schope="row"><?= $i ?></th>
+                                    <th schope="row"><?= ($this->uri->segment(3)) ? $i+$this->uri->segment(3) : $i; ?></th>
                                     <td style="text-align: center;"><?= $b['judul'] ?></td>
                                     <td style="text-align: center;"><?= $b['penulis'] ?></td>
                                     <td style="text-align: center;"><?= $b['tahun'] ?></td>
