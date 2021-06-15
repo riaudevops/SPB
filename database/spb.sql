@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 25, 2019 at 06:27 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Host: localhost
+-- Waktu pembuatan: 15 Jun 2021 pada 12.24
+-- Versi server: 5.7.30
+-- Versi PHP: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `buku`
+-- Struktur dari tabel `buku`
 --
 
 CREATE TABLE `buku` (
@@ -42,7 +41,7 @@ CREATE TABLE `buku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `buku`
+-- Dumping data untuk tabel `buku`
 --
 
 INSERT INTO `buku` (`id`, `judul`, `penulis`, `tahun`, `penerbit`, `kota_terbit`, `sub_judul`, `jumlah_halaman`, `letak_buku`, `jumlah`) VALUES
@@ -62,35 +61,35 @@ INSERT INTO `buku` (`id`, `judul`, `penulis`, `tahun`, `penerbit`, `kota_terbit`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `buku_yang_dipinjam`
+-- Struktur dari tabel `buku_yang_dipinjam`
 --
 
 CREATE TABLE `buku_yang_dipinjam` (
   `id` int(11) NOT NULL,
-  `id_user` varchar(10) NOT NULL,
-  `id_buku` varchar(10) NOT NULL
+  `id_user` int(11) NOT NULL,
+  `id_buku` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `buku_yang_dipinjam`
+-- Dumping data untuk tabel `buku_yang_dipinjam`
 --
 
 INSERT INTO `buku_yang_dipinjam` (`id`, `id_user`, `id_buku`) VALUES
-(1, '2', '2'),
-(2, '2', '1'),
-(3, '7', '1'),
-(4, '7', '2'),
-(5, '8', '2');
+(1, 2, 2),
+(2, 2, 1),
+(3, 7, 1),
+(4, 7, 2),
+(5, 8, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_peminjaman_pengembalian`
+-- Struktur dari tabel `data_peminjaman_pengembalian`
 --
 
 CREATE TABLE `data_peminjaman_pengembalian` (
   `id` int(11) NOT NULL,
-  `id_user` varchar(255) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `tanggal_peminjaman` date NOT NULL,
   `tanggal_pengembalian` date NOT NULL,
   `denda` varchar(255) NOT NULL,
@@ -98,24 +97,24 @@ CREATE TABLE `data_peminjaman_pengembalian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `data_peminjaman_pengembalian`
+-- Dumping data untuk tabel `data_peminjaman_pengembalian`
 --
 
 INSERT INTO `data_peminjaman_pengembalian` (`id`, `id_user`, `tanggal_peminjaman`, `tanggal_pengembalian`, `denda`, `status`) VALUES
-(2, '2', '2019-11-17', '0000-00-00', '0', 0),
-(4, '7', '2019-11-06', '0000-00-00', '0', 0),
-(5, '8', '2019-11-08', '0000-00-00', '0', 0);
+(2, 2, '2019-11-17', '0000-00-00', '0', 0),
+(4, 7, '2019-11-06', '0000-00-00', '0', 0),
+(5, 8, '2019-11-08', '0000-00-00', '0', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peminjaman_pengembalian`
+-- Struktur dari tabel `peminjaman_pengembalian`
 --
 
 CREATE TABLE `peminjaman_pengembalian` (
   `id` int(11) NOT NULL,
-  `id_user` varchar(255) NOT NULL,
-  `id_buku` int(6) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_buku` int(11) NOT NULL,
   `tanggal_peminjaman` date NOT NULL,
   `tanggal_pengembalian` date NOT NULL,
   `denda` varchar(255) NOT NULL,
@@ -123,37 +122,39 @@ CREATE TABLE `peminjaman_pengembalian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `peminjaman_pengembalian`
+-- Dumping data untuk tabel `peminjaman_pengembalian`
 --
 
 INSERT INTO `peminjaman_pengembalian` (`id`, `id_user`, `id_buku`, `tanggal_peminjaman`, `tanggal_pengembalian`, `denda`, `status`) VALUES
-(2, '2', 1, '2019-11-17', '2019-11-21', '0', 1),
-(4, '7', 2, '2019-11-06', '2019-11-21', '4000', 1),
-(5, '8', 1, '2019-11-08', '2019-11-21', '3000', 1),
-(6, '8', 2, '2019-11-08', '0000-00-00', '0', 0),
-(9, '8', 2, '2019-11-21', '2019-11-21', '0', 1),
-(10, '7', 2, '2019-11-21', '2019-11-21', '0', 1),
-(11, '7', 1, '2019-11-21', '2019-11-21', '0', 1),
-(13, '7', 9, '2019-11-12', '2019-11-21', '1000', 1),
-(14, '8', 164, '2019-11-21', '0000-00-00', '0', 0),
-(15, '8', 2, '2019-11-21', '2019-11-21', '0', 1),
-(16, '7', 2, '2019-11-21', '2019-11-21', '0', 1),
-(17, '7', 2, '2019-11-09', '2019-11-23', '3500', 1),
-(18, '2', 2, '2019-11-05', '2019-11-24', '6000', 1),
-(19, '2', 162, '2019-11-02', '0000-00-00', '0', 0),
-(20, '8', 2, '2019-11-01', '0000-00-00', '0', 0),
-(21, '7', 164, '2019-11-24', '2019-11-24', '0', 1),
-(22, '2', 168, '2019-11-25', '2019-11-25', '0', 1),
-(23, '2', 163, '2019-11-25', '0000-00-00', '0', 0),
-(24, '2', 168, '2019-11-25', '0000-00-00', '0', 0),
-(25, '7', 168, '2019-11-25', '0000-00-00', '0', 0),
-(26, '7', 157, '2019-11-25', '0000-00-00', '0', 0),
-(27, '7', 159, '2019-11-25', '2019-11-25', '0', 1);
+(2, 2, 1, '2019-11-17', '2019-11-21', '0', 1),
+(4, 7, 2, '2019-11-06', '2019-11-21', '4000', 1),
+(5, 8, 1, '2019-11-08', '2019-11-21', '3000', 1),
+(6, 8, 2, '2019-11-08', '0000-00-00', '0', 0),
+(9, 8, 2, '2019-11-21', '2019-11-21', '0', 1),
+(10, 7, 2, '2019-11-21', '2019-11-21', '0', 1),
+(11, 7, 1, '2019-11-21', '2019-11-21', '0', 1),
+(13, 7, 9, '2019-11-12', '2019-11-21', '1000', 1),
+(14, 8, 164, '2019-11-21', '0000-00-00', '0', 0),
+(15, 8, 2, '2019-11-21', '2019-11-21', '0', 1),
+(16, 7, 2, '2019-11-21', '2019-11-21', '0', 1),
+(17, 7, 2, '2019-11-09', '2019-11-23', '3500', 1),
+(18, 2, 2, '2019-11-05', '2019-11-24', '6000', 1),
+(19, 2, 162, '2019-11-02', '0000-00-00', '0', 0),
+(20, 8, 2, '2019-11-01', '0000-00-00', '0', 0),
+(21, 7, 164, '2019-11-24', '2019-11-24', '0', 1),
+(22, 2, 168, '2019-11-25', '2019-11-25', '0', 1),
+(23, 2, 163, '2019-11-25', '0000-00-00', '0', 0),
+(24, 2, 168, '2019-11-25', '0000-00-00', '0', 0),
+(25, 7, 168, '2019-11-25', '0000-00-00', '0', 0),
+(26, 7, 157, '2019-11-25', '2019-12-18', '8000', 1),
+(27, 7, 159, '2019-11-25', '2019-11-25', '0', 1),
+(28, 7, 168, '2021-06-01', '0000-00-00', '0', 0),
+(29, 7, 159, '2021-06-15', '0000-00-00', '0', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -165,7 +166,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `username`, `password`, `hak_akses`) VALUES
@@ -179,68 +180,98 @@ INSERT INTO `user` (`id`, `name`, `username`, `password`, `hak_akses`) VALUES
 --
 
 --
--- Indexes for table `buku`
+-- Indeks untuk tabel `buku`
 --
 ALTER TABLE `buku`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `buku_yang_dipinjam`
+-- Indeks untuk tabel `buku_yang_dipinjam`
 --
 ALTER TABLE `buku_yang_dipinjam`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_buku` (`id_buku`);
 
 --
--- Indexes for table `data_peminjaman_pengembalian`
+-- Indeks untuk tabel `data_peminjaman_pengembalian`
 --
 ALTER TABLE `data_peminjaman_pengembalian`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `peminjaman_pengembalian`
+-- Indeks untuk tabel `peminjaman_pengembalian`
 --
 ALTER TABLE `peminjaman_pengembalian`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pp-id_user` (`id_user`),
+  ADD KEY `pp-id_buku` (`id_buku`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `buku`
+-- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
--- AUTO_INCREMENT for table `buku_yang_dipinjam`
+-- AUTO_INCREMENT untuk tabel `buku_yang_dipinjam`
 --
 ALTER TABLE `buku_yang_dipinjam`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `data_peminjaman_pengembalian`
+-- AUTO_INCREMENT untuk tabel `data_peminjaman_pengembalian`
 --
 ALTER TABLE `data_peminjaman_pengembalian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `peminjaman_pengembalian`
+-- AUTO_INCREMENT untuk tabel `peminjaman_pengembalian`
 --
 ALTER TABLE `peminjaman_pengembalian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `buku_yang_dipinjam`
+--
+ALTER TABLE `buku_yang_dipinjam`
+  ADD CONSTRAINT `byp-id_buku` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id`),
+  ADD CONSTRAINT `byp-id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `data_peminjaman_pengembalian`
+--
+ALTER TABLE `data_peminjaman_pengembalian`
+  ADD CONSTRAINT `dpp-id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `peminjaman_pengembalian`
+--
+ALTER TABLE `peminjaman_pengembalian`
+  ADD CONSTRAINT `pp-id_buku` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id`),
+  ADD CONSTRAINT `pp-id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
