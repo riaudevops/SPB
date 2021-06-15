@@ -113,10 +113,14 @@ date_default_timezone_set('Asia/Jakarta');
 									$date1 = strtotime(date('Y-m-d'));
 									$date2 = strtotime(date('Y-m-d', strtotime($p['tanggal_peminjaman'] . ' + 7 days')));
 
-									$now = time(); // or your date as well
-									$your_date = strtotime($p['tanggal_peminjaman']);
-									$datediff = $now - $your_date;
-									$denda = (int) (round($datediff / (60 * 60 * 24))) * 500;
+									if ($date2 > $date1) {
+										$denda = 0;
+									} else {
+										$now = time(); // or your date as well
+										$your_date = strtotime(($p['tanggal_peminjaman'] . ' + 8 days'));
+										$datediff = $now - $your_date;
+										$denda = (int) (round($datediff / (60 * 60 * 24))) * 500;
+									}
 
 									?>
 

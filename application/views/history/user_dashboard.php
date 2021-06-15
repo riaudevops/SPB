@@ -38,46 +38,26 @@
                                     <th schope="row" style="text-align: center;"><?= $nomor ?></th>
 
                                     <!-- <td style="text-align: center;"><?php // echo date('d F Y', strtotime($p['tanggal_peminjaman']))  
-                                                                                ?></td> -->
+                                                                            ?></td> -->
                                     <td style="text-align: center;"><?= tgl_indo($p['tanggal_peminjaman'])  ?></td>
                                     <td style="text-align: center;"><?= $p['status'] == 0 ? tgl_indo(date('Y-m-d', strtotime($p['tanggal_peminjaman'] . ' + 7 days'))) : '-'  ?></td>
                                     <td style="text-align: center;"><?= $p['judul'] ?></td>
 
                                     <?php
 
-                                        $date1 = strtotime(date('Y-m-d'));
-                                        $date2 = strtotime(date('Y-m-d', strtotime($p['tanggal_peminjaman'] . ' + 7 days')));
+                                    $date1 = strtotime(date('Y-m-d'));
+                                    $date2 = strtotime(date('Y-m-d', strtotime($p['tanggal_peminjaman'] . ' + 7 days')));
 
-                                        if ($date2 > $date1) {
-                                            $days = 0;
-                                            $denda = 0;
-                                        } else {
-                                            // Formulate the Difference between two dates
-                                            $diff = abs($date1 - $date2);
+                                    if ($date2 > $date1) {
+                                        $denda = 0;
+                                    } else {
+                                        $now = time(); // or your date as well
+                                        $your_date = strtotime(($p['tanggal_peminjaman'] . ' + 8 days'));
+                                        $datediff = $now - $your_date;
+                                        $denda = (int) (round($datediff / (60 * 60 * 24))) * 500;
+                                    }
 
-
-                                            // To get the year divide the resultant date into
-                                            // total seconds in a year (365*60*60*24)
-                                            $years = floor($diff / (365 * 60 * 60 * 24));
-
-
-                                            // To get the month, subtract it with years and
-                                            // divide the resultant date into
-                                            // total seconds in a month (30*60*60*24)
-                                            $months = floor(($diff - $years * 365 * 60 * 60 * 24)
-                                                / (30 * 60 * 60 * 24));
-
-
-                                            // To get the day, subtract it with years and
-                                            // months and divide the resultant date into
-                                            // total seconds in a days (60*60*24)
-                                            $days = floor(($diff - $years * 365 * 60 * 60 * 24 -
-                                                $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
-
-                                            $denda = (int) $days * 500;
-                                        }
-
-                                        ?>
+                                    ?>
 
                                     <td style="text-align: center;"><?= 'Rp. ' . $denda; ?></td>
                                     <td style="text-align: center;"><?= $p['status'] == 1 ? '<div class="btn btn-success text-white">Sudah Dikembalikan</div>' : '<div class="btn btn-warning text-white">Belum Dikembalikan</div>'  ?></td>

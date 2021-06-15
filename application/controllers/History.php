@@ -15,6 +15,8 @@ class History extends CI_Controller
         if ($this->session->userdata('hak_akses') == null) {
             redirect('home');
         }
+
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     public function index()
